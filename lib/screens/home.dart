@@ -85,7 +85,14 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              Positioned(bottom: 24, right: 0, child: Floatingbutton())
+              Positioned(
+                bottom: 24,
+                right: 0,
+                child: Floatingbutton(
+                  color: purple,
+                  ico: Icons.add,
+                ),
+              ),
             ],
           ),
         ),
