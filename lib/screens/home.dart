@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/appColor/color_scheme.dart';
-import 'package:todo_app/screens/widgets/floating_button.dart';
-import 'package:todo_app/screens/widgets/task_card.dart';
+import 'package:todo_app/appColor/color_scheme.dart';
+import 'package:todo_app/widgets/floating_button.dart';
+import 'package:todo_app/widgets/task_card.dart';
 
 class Home extends StatefulWidget {
   @override

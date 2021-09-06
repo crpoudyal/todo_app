@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/screens/appColor/color_scheme.dart';
+import 'package:todo_app/appColor/color_scheme.dart';
 
 class TaskCard extends StatelessWidget {
   final String title;
