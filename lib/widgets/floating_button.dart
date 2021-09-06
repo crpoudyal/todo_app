@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/appColor/color_scheme.dart';
 
 class Floatingbutton extends StatelessWidget {
   final Color color;
@@ -12,7 +11,7 @@ class Floatingbutton extends StatelessWidget {
       width: 50,
       height: 50,
       decoration:
-          BoxDecoration(color: purple, borderRadius: BorderRadius.circular(20)),
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
       child: Icon(
         ico,
         size: 32,

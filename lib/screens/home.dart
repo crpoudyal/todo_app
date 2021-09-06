@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/appColor/color_scheme.dart';
+import 'package:todo_app/screens/task.dart';
 import 'package:todo_app/widgets/floating_button.dart';
 import 'package:todo_app/widgets/task_card.dart';
 
@@ -88,9 +89,17 @@ class _HomeState extends State<Home> {
               Positioned(
                 bottom: 24,
                 right: 0,
-                child: Floatingbutton(
-                  color: purple,
-                  ico: Icons.add,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Task()),
+                    );
+                  },
+                  child: Floatingbutton(
+                    color: purple,
+                    ico: Icons.add,
+                  ),
                 ),
               ),
             ],
