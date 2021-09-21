@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:todo_app/models/task_model.dart';
 
 class DatabaseHelper {
   static final _dbName = "todo.db";
@@ -13,6 +14,7 @@ class DatabaseHelper {
   static final _columnTitle = 'title';
   static final _columnDescription = 'description';
 
+  DatabaseHelper();
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
 
@@ -35,8 +37,9 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<int> insertTask(Map<String, dynamic> row) async {
+  Future<void> insertTask(TaskModel task) async {
     Database db = await instance.database;
-    return await db.insert(_tableName, row);
+    await db.insert(_tableName, task.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 }

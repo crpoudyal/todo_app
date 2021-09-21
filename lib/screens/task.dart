@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/appColor/color_scheme.dart';
+import 'package:todo_app/database_helper.dart';
+import 'package:todo_app/models/task_model.dart';
 import 'package:todo_app/widgets/floating_button.dart';
 import 'package:todo_app/widgets/task_checkbox.dart';
 
@@ -36,6 +38,18 @@ class _TaskState extends State<Task> {
                         ),
                         Expanded(
                           child: TextField(
+                            onSubmitted: (value) async {
+                              print("The Title is :$value");
+
+                              if (value != "") {
+                                DatabaseHelper _dbHelper = DatabaseHelper();
+
+                                TaskModel _newTask = TaskModel(
+                                    id: 1, title: value, description: "desc");
+
+                                await _dbHelper.insertTask(_newTask);
+                              }
+                            },
                             decoration: InputDecoration(
                                 hintText: "Enter Task Title...",
                                 border: InputBorder.none),
