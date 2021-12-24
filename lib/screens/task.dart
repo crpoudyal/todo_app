@@ -6,7 +6,7 @@ import 'package:todo_app/widgets/floating_button.dart';
 import 'package:todo_app/widgets/task_checkbox.dart';
 
 class Task extends StatefulWidget {
-  const Task({Key? key}) : super(key: key);
+  const Task({Key? key, id, title, description}) : super(key: key);
 
   @override
   _TaskState createState() => _TaskState();

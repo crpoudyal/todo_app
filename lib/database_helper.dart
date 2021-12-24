@@ -3,6 +3,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo_app/models/task_model.dart';
+import 'package:todo_app/screens/task.dart';
 
 class DatabaseHelper {
   static final _dbName = "todo.db";
@@ -41,5 +42,16 @@ class DatabaseHelper {
     Database db = await instance.database;
     await db.insert(_tableName, task.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<Task>> getTask() async {
+    Database db = await instance.database;
+    List<Map<String, dynamic>> taskMap = await db.query(_tableName);
+    return List.generate(taskMap.length, (index) {
+      return Task(
+          id: taskMap[index]['id'],
+          title: taskMap[index]['title'],
+          description: taskMap[index]['description']);
+    });
   }
 }

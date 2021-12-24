@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/appColor/color_scheme.dart';
+import 'package:todo_app/database_helper.dart';
 import 'package:todo_app/screens/task.dart';
 import 'package:todo_app/widgets/floating_button.dart';
 import 'package:todo_app/widgets/task_card.dart';
@@ -10,6 +11,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  DatabaseHelper _dbHelper = DatabaseHelper();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,41 +52,23 @@ class _HomeState extends State<Home> {
                     height: 10,
                   ),
                   Expanded(
-                    child: ListView(
-                      children: [
-                        TaskCard(
-                          title: "Get Started",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                        TaskCard(
-                          title: "Do this project",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                        TaskCard(
-                          title: "Now is Now",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                        TaskCard(
-                          title: "Get Started",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                        TaskCard(
-                          title: "Do this project",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                        TaskCard(
-                          title: "Now is Now",
-                          desc:
-                              "This is the description of the following tasks so if you have any dout please talk to me ok dont hegitate to talk",
-                        ),
-                      ],
-                    ),
-                  ),
+                      child: FutureBuilder(
+                    initialData: [],
+                    future: _dbHelper.getTask(),
+                    builder: (context, snapshot) {
+                      print("snapshot data");
+                      print(snapshot.data);
+
+                      return ListView.builder(
+                        itemBuilder: (context, index) {
+                          return TaskCard(
+                            title: '',
+                            desc: '',
+                          );
+                        },
+                      );
+                    },
+                  )),
                 ],
               ),
               Positioned(
@@ -94,7 +79,9 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Task()),
-                    );
+                    ).then((value) {
+                      setState(() {});
+                    });
                   },
                   child: Floatingbutton(
                     color: purple,
