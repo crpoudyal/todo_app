@@ -55,11 +55,10 @@ class _HomeState extends State<Home> {
                       child: FutureBuilder(
                     initialData: [],
                     future: _dbHelper.getTask(),
-                    builder: (context, snapshot) {
-                      print("snapshot data");
+                    builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
                       print(snapshot.data);
-
                       return ListView.builder(
+                        itemCount: snapshot.data?.length,
                         itemBuilder: (context, index) {
                           return TaskCard(
                             title: '',
