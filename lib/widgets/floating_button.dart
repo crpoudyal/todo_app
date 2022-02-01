@@ -11,7 +11,7 @@ class Floatingbutton extends StatelessWidget {
       width: 50,
       height: 50,
       decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
+          BoxDecoration(color: color, borderRadius: BorderRadius.circular(25)),
       child: Icon(
         ico,
         size: 32,
